@@ -1,0 +1,37 @@
+classDiagram
+    direction TB
+    class Main {
+        +main(String[] args) void
+    }
+    class ExtensionDemo {
+        +main(String[] args) void
+    }
+    class Calculator {
+        -OperationStrategy strategy
+        +Calculator(OperationStrategy strategy)
+        +setStrategy(OperationStrategy strategy) void
+        +calculate(double firstNumber, double secondNumber) double
+    }
+    class OperationStrategy {
+        <<interface>>
+        +execute(double firstNumber, double secondNumber) double
+    }
+    class AddStrategy {
+        +execute(double firstNumber, double secondNumber) double
+    }
+    class SubtractStrategy {
+        +execute(double firstNumber, double secondNumber) double
+    }
+    class MultiplyStrategy {
+        +execute(double firstNumber, double secondNumber) double
+    }
+    class DivideStrategy {
+        +execute(double firstNumber, double secondNumber) double
+    }
+    Main ..> Calculator : configures and calls
+    ExtensionDemo ..> Calculator : configures and calls
+    Calculator --> OperationStrategy : strategy
+    OperationStrategy <|.. AddStrategy
+    OperationStrategy <|.. SubtractStrategy
+    OperationStrategy <|.. MultiplyStrategy
+    OperationStrategy <|.. DivideStrategy
